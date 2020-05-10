@@ -41,7 +41,7 @@ const handleJsonError: JsonError = (err, _req, res, next) => {
 // Logging middleware, disabled during production
 
 const logger: Logger = (req, _, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url})}\n`)
+  console.log(`[${new Date().toISOString()}] ${req.method} to ${req.url}\n`)
   next()
 }
 
