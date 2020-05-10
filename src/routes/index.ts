@@ -1,9 +1,8 @@
 import { Router } from 'express'
+import { router as Auth } from './auth-router'
 
 const routes = Router()
 
-routes.use('/', (req, res) => {
-  return res.status(200).json({ status: 200, ok: true })
-})
+routes.use('/auth', Auth)
 
 export default routes
