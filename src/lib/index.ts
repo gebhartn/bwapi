@@ -1,1 +1,1 @@
-export { applyMiddleware, asyncWrapper } from './middlewares'
+export { applyMiddleware, asyncWrapper, checkJwt } from './middlewares'
