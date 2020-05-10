@@ -1,0 +1,7 @@
+CREATE TABLE "public"."User" (
+  id SERIAL PRIMARY KEY NOT NULL,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  version INT NOT NULL DEFAULT 0,
+  "createdAt" TIMESTAMP NOT NULL DEFAULT now()
+);
