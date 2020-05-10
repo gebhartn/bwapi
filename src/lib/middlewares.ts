@@ -1,7 +1,28 @@
 import cors from 'cors'
 import helmet from 'helmet'
+import { verify, sign } from 'jsonwebtoken'
 import { json, Application } from 'express'
 import { JsonError, Wrapper, Logger } from './types'
+
+export const checkJwt: Logger = (req, res, next) => {
+  const token: string = req.headers.authorization || ''
+  let payload: any
+
+  try {
+    payload = verify(token, process.env.SECRET!)
+    res.locals.payload = payload
+  } catch (e) {
+    return res.send(401)
+  }
+
+  const { id } = payload
+
+  const refresh = sign({ id }, process.env.SECRET!, { expiresIn: '1h' })
+
+  res.setHeader('Authorization', refresh)
+
+  return next()
+}
 
 // Determines if we have received a malformed JSON request from the client
 
