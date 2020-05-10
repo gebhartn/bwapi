@@ -1,11 +1,10 @@
 import { Router } from 'express'
-import { checkJwt } from '../lib'
-import { UserController as User } from '../controllers/user-controller'
-import { AuthController as Auth } from '../controllers/auth-controller'
+import { User } from '../controllers'
+import { Auth } from '../controllers'
+import { checkJwt, asyncWrapper } from '../lib'
 
 export const router = Router()
 
-router.post('/register', User.create)
-router.post('/login', Auth.login)
-router.put('/update', [checkJwt], User.update)
-
+router.post('/register', asyncWrapper(User.create))
+router.post('/login', asyncWrapper(Auth.login))
+router.put('/update', [checkJwt], asyncWrapper(User.update))
