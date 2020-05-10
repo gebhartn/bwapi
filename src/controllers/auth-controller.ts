@@ -15,9 +15,9 @@ export const AuthController = {
 
     user = await prisma.user.findOne({ where: { username } })
 
-    if (!user) return res.status(400)
+    if (!user) return res.sendStatus(400)
 
-    if (!(await compare(password, user.password))) return res.send(401)
+    if (!(await compare(password, user.password))) return res.sendStatus(401)
 
     const token =
       user && sign({ id: user.id }, process.env.SECRET!, { expiresIn: '1h' })
