@@ -7,3 +7,6 @@ You can find the front end repository <a href="#">here</a>.
 ### Docs
 
 Lorem Ipsum
+
+
+#### Author
